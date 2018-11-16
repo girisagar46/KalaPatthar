@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Design</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            font-family: Arial, sans-serif;
+        }
+
+        .s-form {
+            width: 70%;  /* use percentage for responsive */
+            margin: 25px auto; /* Top and Botton :25px Left anf Right: Auto; */
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 15px;
+        }
+
+        .s-form .s-label {
+            display: block;
+            padding: 15px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            background-color: #3498db;
+            color: white;
+            font-weight: bolder;
+        }
+
+        .s-form .s-input {
+            display: block;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            height: 40px;
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        .s-form .s-btn {
+            display: block;
+            margin: 10px auto;
+            border: none;
+            padding: 15px;
+            color: white;
+            background-color: #1297E0;
+            font-size: 18px;
+        }
+
+        .s-form .s-btn:hover {
+            cursor: pointer;
+            background-color: #1297D0;
+        }
+
+        .s-form .s-btn:active {
+            background-color: #0077C0;
+        }
+
+        .s-form h3 {
+            color: #16a085;
+            text-align: center;
+            padding: 10px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<form action="{% url 'crawl_sites' %}" method="POST" role="form" class="s-form">
+
+    {% csrf_token %}
+
+    <h3>Enter URL: </h3>
+
+    <label for="url" class="s-label">Email Address</label>
+    <input type="url" id="url" class="s-input" placeholder="Enter URL" name="requested_url">
+
+    <input type="submit" class="s-btn" value="Start Scrapping">
+</form>
+</body>
+</html>
