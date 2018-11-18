@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} KalaPatthar {% endblock title %}</title>
+    {% include 'snippets/partials/_css.html' %}
+    {% block extrastyles %} {% endblock extrastyles %}
+</head>
+<body>
+{% include 'snippets/partials/_navigation.html' %}
+<div class="container-fluid">
+    {% block content %}
+
+    {% endblock content %}
+
+    {% block info %}
+        <hr>
+        <div class="row">
+            <div class="container">
+                <div class="col-md-6 pull-left">
+                    <h3>Currently Supported Sites for scrapping:</h3>
+                    <ul>
+                        <li>https://de.contentbird.io/blog/</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endblock info %}
+</div>
+
+{% include 'snippets/partials/_footer.html' %}
+{% include 'snippets/partials/_javascripts.html' %}
+{% block extrajs %}{% endblock extrajs %}
+</body>
+</html>

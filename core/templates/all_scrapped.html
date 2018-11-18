@@ -1,0 +1,25 @@
+{% extends 'snippets/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>URL</th>
+                <th>Title</th>
+            </tr>
+            </thead>
+
+            {% for each in object_list %}
+                <tr>
+                    <td><a href="{% url 'detail' each.id %}">{{ each.website_name}}</a></td>
+
+                    <td>{{ each.title}}</td>
+                </tr>
+            {% endfor %}
+            <tbody></tbody>
+        </table>
+    </div>
+
+
+{% endblock content %}

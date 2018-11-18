@@ -1,0 +1,25 @@
+{% extends 'snippets/base.html' %}
+{% load list_operations %}
+{% block content %}
+    <div class="container">
+    {% for k,v in data.to_dict.items %}
+
+        {% if k == 'body' %}
+            <h4>Body</h4>
+            {% list_joiner v as body%}
+            {{ body }}
+        {% elif k == 'images_src' %}
+            <h4>Images</h4>
+            {% literal_eval v as image_links %}
+            {% for each in image_links %}
+                <a href="{{ each }}">{{ each }}</a><br>
+            {% endfor %}
+        {% elif k == 'anchor_links' %}
+            <h4>Anchor</h4>
+            {% literal_eval v as anchors %}
+            {% for each in anchors %}
+                <a href="{{ each }}">{{ each }}</a><br>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endblock content %}

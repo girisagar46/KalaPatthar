@@ -1,0 +1,22 @@
+html body {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.15em;
+}
+
+
+#footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
+    background: #f8f9fa;
+}
+
+.card-deck {
+    margin: 10px;
+}
+
+.s-form {
+    margin-top: 20px;
+}

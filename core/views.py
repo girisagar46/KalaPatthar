@@ -4,8 +4,12 @@ from uuid import uuid4
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
 from django.http import JsonResponse
+from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import ListView
 from scrapyd_api import ScrapydAPI
+
+from .models import (Website, BlogData)
 
 scrapyd = ScrapydAPI('http://localhost:6800')
 
@@ -100,7 +104,7 @@ class CrawlSites(View):
         requested_url = request.POST.get('requested_url', None)
 
         if not requested_url:
-            return JsonResponse({'error': 'Missing  args'})
+            return JsonResponse({'error': 'URL not provided'})
 
         if not CrawlSites.is_valid_url(requested_url):
             return JsonResponse({'error': 'URL is invalid'})
@@ -117,8 +121,22 @@ class CrawlSites(View):
         tasks_params = dict(settings=settings, url=requested_url, domain=website_name)
 
         if "contentbird" in website_name:
-            print("|'https://de.contentbird.io/blog/'")
             task = scrapyd.schedule('default', 'content_bird_spider', **tasks_params)
             return JsonResponse({'task_id': task, 'unique_id': unique_id, 'status': 'started'})
 
-        return JsonResponse({200: 'OK'})
+        return redirect(to='view_all')
+
+
+class ScrappedSitesView(ListView):
+    model = Website
+    queryset = Website.objects.all()
+
+    template_name = 'all_scrapped.html'
+
+
+def web_detail(request, id):
+    data = BlogData.objects.filter(website_id=id).first()
+
+    print(data)
+
+    return render(request, template_name='detail.html', context={"data":data})

@@ -2,11 +2,8 @@ from django.db import models
 
 
 class Website(models.Model):
-    website_name = models.CharField(max_length=50)
-    title = models.CharField(max_length=100, null=True, blank=True)
-
-    class Meta:
-        unique_together = ('website_name', 'title')
+    website_name = models.CharField(max_length=250)
+    title = models.CharField(max_length=250, null=True, blank=True)
 
     def __str__(self):
         return f"{self.website_name} {self.title}"

@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import BlogData, Website
+
+admin.site.register(Website)
+admin.site.register(BlogData)
